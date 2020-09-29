@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BoatPather : MonoBehaviour
 {
+    IslandReferee localRef;
+    
     //Effects and Objects
     [SerializeField] private GameObject boatRender = default;
     [SerializeField] private GameObject nightShade = default;
@@ -24,8 +26,6 @@ public class BoatPather : MonoBehaviour
     //Path Settings
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private float lineFidelity = .25f;
-
-    
     [SerializeField] private IslandReferee.BoatColors boatColor = default;
 
     //Path Variables
@@ -45,6 +45,7 @@ public class BoatPather : MonoBehaviour
         nightShade.SetActive(false);
         bombX.SetActive(false);
         boatPath.enabled = false;
+        localRef = FindObjectOfType<IslandReferee>();
     }
 
     void Update()
