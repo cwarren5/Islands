@@ -26,7 +26,7 @@ public class BoatPather : MonoBehaviour
     //Path Settings
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private float lineFidelity = .25f;
-    [SerializeField] private IslandReferee.BoatColors boatColor = default;
+    [SerializeField] private IslandReferee.BoatTeams boatColor = default;
 
     //Path Variables
     private LineRenderer boatPath;
@@ -37,6 +37,8 @@ public class BoatPather : MonoBehaviour
     private bool running = false;
     private int runPosition = 0;
     private Rigidbody boatRigid;
+
+
     
     void Start()
     {
@@ -46,6 +48,7 @@ public class BoatPather : MonoBehaviour
         bombX.SetActive(false);
         boatPath.enabled = false;
         localRef = FindObjectOfType<IslandReferee>();
+        localRef.boatCountTotal[(int)boatColor] += 1;
     }
 
     void Update()
@@ -121,11 +124,11 @@ public class BoatPather : MonoBehaviour
 
     private void DestroyBoat()
     {
-        if (boatColor == IslandReferee.BoatColors.Red)
+        if (boatColor == IslandReferee.BoatTeams.Red)
         {
             IslandReferee.redBoatCount -= 1;
         }
-        if (boatColor == IslandReferee.BoatColors.Yellow)
+        if (boatColor == IslandReferee.BoatTeams.Yellow)
         {
             IslandReferee.yellowBoatCount -= 1;
         }
@@ -138,12 +141,12 @@ public class BoatPather : MonoBehaviour
     {
         int nextTurn = (int)IslandReferee.currentTurn;
         nextTurn += 1;
-        int totalEnumItems = IslandReferee.BoatColors.GetNames(typeof(IslandReferee.BoatColors)).Length;
+        int totalEnumItems = IslandReferee.BoatTeams.GetNames(typeof(IslandReferee.BoatTeams)).Length;
         if (nextTurn == totalEnumItems)
         {
             nextTurn = 0;
         }
-        IslandReferee.currentTurn = (IslandReferee.BoatColors)nextTurn;
+        IslandReferee.currentTurn = (IslandReferee.BoatTeams)nextTurn;
     }
 
     private void WeaponsCheck()
