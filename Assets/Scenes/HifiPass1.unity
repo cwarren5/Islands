@@ -4974,8 +4974,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50734cd3e5bb41f478b4af523a52d1f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boatCountTotal: 00000000000000000000000000000000
   statusText: {fileID: 609402266}
   statusShadow: {fileID: 1445337006}
+  boatShades:
+  - {r: 0.91372555, g: 0.27058825, b: 0.12941177, a: 1}
+  - {r: 0.8745099, g: 0.62352943, b: 0.10588236, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.4136189, b: 0, a: 1}
+  currentTurn: 0
+  totalTeams: 0
 --- !u!4 &96606588
 Transform:
   m_ObjectHideFlags: 0
@@ -5133,8 +5141,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235521976}
-  m_LocalRotation: {x: 0.71070343, y: 0.01723444, z: 0.01752566, w: -0.70306224}
-  m_LocalPosition: {x: 3.3183172, y: -140.5318, z: -7.2376647}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -193.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

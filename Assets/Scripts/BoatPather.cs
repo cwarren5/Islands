@@ -64,7 +64,7 @@ public class BoatPather : MonoBehaviour
     //Mouse Actions when player clicks a boat
     void OnMouseDown()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localRef.currentTurn)
         {      
             CreateNewBoatPath();
             nightShade.SetActive(true);
@@ -79,7 +79,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localRef.currentTurn)
         {
             DrawBoatPath();
         }
@@ -87,7 +87,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localRef.currentTurn)
         {
             running = true;
             runPosition = 0;
@@ -124,14 +124,20 @@ public class BoatPather : MonoBehaviour
 
     private void DestroyBoat()
     {
-        if (boatColor == IslandReferee.BoatTeams.Red)
+        /*if (boatColor == IslandReferee.BoatTeams.Red)
         {
             IslandReferee.redBoatCount -= 1;
         }
         if (boatColor == IslandReferee.BoatTeams.Yellow)
         {
             IslandReferee.yellowBoatCount -= 1;
-        }
+        }*/
+        localRef.boatCountTotal[(int)boatColor] -= 1;
+        /*if (localRef.boatCountTotal[(int)boatColor] == 0)
+        {
+            localRef.AnnounceWinner(boatColor);
+        }*/
+        localRef.CheckForWinner();
         Destroy(gameObject);
     }
 
@@ -139,14 +145,7 @@ public class BoatPather : MonoBehaviour
 
     private void InitiateNextPlayerTurn()
     {
-        int nextTurn = (int)IslandReferee.currentTurn;
-        nextTurn += 1;
-        int totalEnumItems = IslandReferee.BoatTeams.GetNames(typeof(IslandReferee.BoatTeams)).Length;
-        if (nextTurn == totalEnumItems)
-        {
-            nextTurn = 0;
-        }
-        IslandReferee.currentTurn = (IslandReferee.BoatTeams)nextTurn;
+        localRef.GoToNextTurn();
     }
 
     private void WeaponsCheck()
