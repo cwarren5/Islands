@@ -5,61 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class IslandReferee : MonoBehaviour
 {
-    //public static int yellowBoatCount = 3;
-    //public static int redBoatCount = 3;
-    public int[] boatCountTotal = new int[4];
     [SerializeField] private TextMesh statusText = default;
     [SerializeField] private TextMesh statusShadow = default;
+    [SerializeField] public GameObject nightEnv = default;
+    [SerializeField] public GameObject dayEnv = default;
+
     public enum BoatTeams {Red, Yellow, White, Orange};
-    public Color[] boatShades = new Color[4];
     public BoatTeams currentTurn = BoatTeams.Red;
+    public Color[] boatShades = new Color[4];
+    public int[] boatCountTotal = new int[4];
     public int totalTeams = 0;
-    //private Color redOfBoat = new Color(255.0f/255, 92.0f/255, 51.0f/255, 1.0f);
-    //private Color yellowOfBoat = new Color(255.0f/255, 188.0f/255, 47.0f/255, 1.0f);
-    // Start is called before the first frame update
+ 
+    //Sets up game after all boats have time to report back
     void Start()
     {
-        Invoke("BoatCountPrintDebug", 0.1f);
-        AnnounceTurn();
+        Invoke("GameSetup", 0.1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        /*
-        if(redBoatCount == 0)
-        {
-            //Debug.Log("Yellow  Wins!");
-            statusText.text = "Yellow Wins!";
-            statusText.color = yellowOfBoat;
-            Invoke("GoToMainMenu", 5.0f);
-        }
-        else if(yellowBoatCount == 0)
-        {
-            //Debug.Log("Red Wins!");
-            statusText.text = "Red Wins!";
-            statusText.color = redOfBoat;
-            Invoke("GoToMainMenu", 5.0f);
-        }
-        else if(currentTurn == BoatTeams.Red)
-        {
-            statusText.text = "Red's Turn!";
-            statusText.color = redOfBoat;
-        }
-        else if (currentTurn == BoatTeams.Yellow)
-        {
-            statusText.text = "Yellow's Turn!";
-            statusText.color = yellowOfBoat;
-        }
-        statusShadow.text = statusText.text;
-        */
+
     }
 
+    // for use by other scripts
     private void GoToMainMenu()
     {
         SceneManager.LoadScene(1);
     }
 
+    // checks to see if someone won the game every time a ship is destroyed
     public void CheckForWinner()
     {
         int teamsStillInGame = 0;
@@ -78,6 +52,8 @@ public class IslandReferee : MonoBehaviour
             AnnounceWinner(potentialWinner);
         }
     }
+
+    //
     public void AnnounceWinner (BoatTeams winningTeam)
     {
         Debug.Log("The winning team is " + winningTeam);
@@ -107,7 +83,7 @@ public class IslandReferee : MonoBehaviour
         statusShadow.text = statusText.text;
     }
 
-    void BoatCountPrintDebug()
+    void GameSetup()
     {
         int loopCounter = 0;
         foreach (int count in boatCountTotal)
@@ -121,5 +97,8 @@ public class IslandReferee : MonoBehaviour
             loopCounter++;
         }
         Debug.Log("The total number of teams is " + totalTeams);
+        int randomTurn = Random.Range(0, totalTeams);
+        currentTurn = (BoatTeams)randomTurn;
+        AnnounceTurn();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BoatPather : MonoBehaviour
 {
-    IslandReferee localRef;
+    IslandReferee localReferee;
     
     //Effects and Objects
     [SerializeField] private GameObject boatRender = default;
@@ -47,8 +47,8 @@ public class BoatPather : MonoBehaviour
         nightShade.SetActive(false);
         bombX.SetActive(false);
         boatPath.enabled = false;
-        localRef = FindObjectOfType<IslandReferee>();
-        localRef.boatCountTotal[(int)boatColor] += 1;
+        localReferee = FindObjectOfType<IslandReferee>();
+        localReferee.boatCountTotal[(int)boatColor] += 1;
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class BoatPather : MonoBehaviour
     //Mouse Actions when player clicks a boat
     void OnMouseDown()
     {
-        if (boatColor == localRef.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {      
             CreateNewBoatPath();
             nightShade.SetActive(true);
@@ -79,7 +79,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (boatColor == localRef.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {
             DrawBoatPath();
         }
@@ -87,7 +87,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (boatColor == localRef.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {
             running = true;
             runPosition = 0;
@@ -132,12 +132,12 @@ public class BoatPather : MonoBehaviour
         {
             IslandReferee.yellowBoatCount -= 1;
         }*/
-        localRef.boatCountTotal[(int)boatColor] -= 1;
+        localReferee.boatCountTotal[(int)boatColor] -= 1;
         /*if (localRef.boatCountTotal[(int)boatColor] == 0)
         {
             localRef.AnnounceWinner(boatColor);
         }*/
-        localRef.CheckForWinner();
+        localReferee.CheckForWinner();
         Destroy(gameObject);
     }
 
@@ -145,7 +145,7 @@ public class BoatPather : MonoBehaviour
 
     private void InitiateNextPlayerTurn()
     {
-        localRef.GoToNextTurn();
+        localReferee.GoToNextTurn();
     }
 
     private void WeaponsCheck()
