@@ -8,6 +8,8 @@ public class BoatBehavior : MonoBehaviour
 
     [SerializeField] private GameObject explodingParticles = default;
     [SerializeField] private GameObject bombBlast = default;
+    [SerializeField] private GameObject boatPatherPrefab = default;
+    private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private IslandReferee.BoatTeams boatColor = default;
 
@@ -15,15 +17,19 @@ public class BoatBehavior : MonoBehaviour
     private bool dead = false;
     private int runPosition = 0;
 
+    PathCreator pathScript;
+
     void Start()
     {
         localReferee = FindObjectOfType<IslandReferee>();
         localReferee.boatCountTotal[(int)boatColor] += 1;
+        myBoatPath = Instantiate(boatPatherPrefab, transform.position, Quaternion.identity);
+        pathScript = myBoatPath.GetComponent<PathCreator>();
     }
 
     void Update()
     {
-        if (running)
+        if (pathScript.running)
         {
             PlayBoatAlongPath();
             LayBomb();
@@ -32,9 +38,9 @@ public class BoatBehavior : MonoBehaviour
 
     private void PlayBoatAlongPath()
     {
-        if (runPosition + 1 <= 2/*points.Count*/)
+        if (runPosition + 1 <= pathScript.points.Count)
         {
-            Vector3 target = /*points[runPosition]*/ Vector3.forward;
+            Vector3 target = pathScript.points[runPosition];
             Vector3 moveDirection = (target - transform.position).normalized;
             float singleStep = speed * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, singleStep, 0.0f);
@@ -58,9 +64,32 @@ public class BoatBehavior : MonoBehaviour
             {
                 //InitiateNextPlayerTurn();
             }
-            running = false;
+            pathScript.running = false;
             runPosition = 0;
+            myBoatPath.transform.position = transform.position;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "island")
+        {
+            explodingParticles.transform.position = transform.position;
+            explodingParticles.SetActive(true);
+            //dead = true;
+            //InitiateNextPlayerTurn();
+            //Invoke("DestroyBoat", 1.0f);
+            Destroy(myBoatPath);
+            Destroy(gameObject);
+        }
+
+        /*if (other.tag == "enemybomb" && !running)
+        {
+            explodingParticles.SetActive(true);
+            boatRender.SetActive(false);
+            dead = true;
+            Invoke("DestroyBoat", 1.0f);
+        }*/
     }
 
     private void LayBomb()

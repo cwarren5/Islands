@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PathCreator : MonoBehaviour
@@ -12,10 +13,11 @@ public class PathCreator : MonoBehaviour
     private LineRenderer boatPath;
     private bool pressed = false;
     private bool hasBomb = false;
-    private List<Vector3> points = new List<Vector3>();
+    public List<Vector3> points = new List<Vector3>();
     public Action<IEnumerable<Vector3>> OnNewPathCreated = delegate { };
     private Vector3 mOffset;
     private float mZCoord;
+    public bool running = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +50,7 @@ public class PathCreator : MonoBehaviour
 
     void OnMouseUp()
     {
-        //running = true;
+        running = true;
         //runPosition = 0;
         pressed = false;
         localReferee.nightEnv.SetActive(false);
