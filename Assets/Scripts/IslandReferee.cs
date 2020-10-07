@@ -71,10 +71,18 @@ public class IslandReferee : MonoBehaviour
     public void GoToNextTurn()
     {
         int nextTurn = (int)currentTurn;
-        nextTurn += 1;
-        if (nextTurn == totalTeams)
+        bool foundNextTurn = false;
+        while (!foundNextTurn)
         {
-            nextTurn = 0;
+            nextTurn += 1;
+            if (nextTurn == totalTeams)
+            {
+                nextTurn = 0;
+            }
+            if (boatCountTotal[nextTurn] != 0)
+            {
+                foundNextTurn = true;
+            }
         }
         currentTurn = (BoatTeams)nextTurn;
         AnnounceTurn();
