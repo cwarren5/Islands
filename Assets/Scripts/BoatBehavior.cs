@@ -61,10 +61,6 @@ public class BoatBehavior : MonoBehaviour
         }
         else
         {
-            if (!dead)
-            {
-                //InitiateNextPlayerTurn();
-            }
             pathScript.running = false;
             InitiateNextPlayerTurn();
             runPosition = 0;
@@ -76,23 +72,22 @@ public class BoatBehavior : MonoBehaviour
     {
         if (other.tag == "island")
         {
-            var tempExplodingTarget = Instantiate(explodingParticlesPrefab, transform.position, Quaternion.identity);
-            var tempParticleRenderer = tempExplodingTarget.GetComponent<Renderer>();
-            tempParticleRenderer.material.SetColor("_Color", localReferee.boatShades[(int)boatColor]);
             InitiateNextPlayerTurn();
-            DestroyBoatAssembly();            
+            InitiateSelfDestruct();            
         }
 
         if (other.tag == "enemybomb" && !pathScript.running)
         {
-            DestroyBoatAssembly();
+            InitiateSelfDestruct();
         }
     }
 
-    private void DestroyBoatAssembly()
+    private void InitiateSelfDestruct()
     {
+        var tempExplodingTarget = Instantiate(explodingParticlesPrefab, transform.position, Quaternion.identity);
+        var tempParticleRenderer = tempExplodingTarget.GetComponent<Renderer>();
+        tempParticleRenderer.material.SetColor("_Color", localReferee.boatShades[(int)boatColor]);
         localReferee.boatCountTotal[(int)boatColor] -= 1;
-        Debug.Log(localReferee.boatCountTotal[(int)boatColor]);
         localReferee.CheckForWinner();
         Destroy(myBoatPath);
         Destroy(gameObject);
@@ -108,6 +103,7 @@ public class BoatBehavior : MonoBehaviour
             /*bombBlast.SetActive(true);
             bombBlast.transform.position = points[bombPosition];*/
             Instantiate(bombBlast, transform.position, Quaternion.identity);
+            pathScript.hasBomb = true;
         }
     }
 }

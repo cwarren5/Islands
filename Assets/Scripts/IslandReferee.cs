@@ -10,11 +10,11 @@ public class IslandReferee : MonoBehaviour
     [SerializeField] public GameObject nightEnv = default;
     [SerializeField] public GameObject dayEnv = default;
 
-    public enum BoatTeams {Red, Yellow, White, Orange};
+    public enum BoatTeams {Red, Yellow, White, Pink};
     public BoatTeams currentTurn = BoatTeams.Red;
     public Color[] boatShades = new Color[4];
     public int[] boatCountTotal = new int[4];
-    public int totalTeams = 0;
+    public int totalTeams = 4;
     private bool winnerDeclaired = false;
  
     //Sets up game after all boats have time to report back
@@ -22,6 +22,7 @@ public class IslandReferee : MonoBehaviour
     {
         Invoke("GameSetup", 0.1f);
         winnerDeclaired = false;
+        totalTeams = 4;
     }
 
     void Update()
@@ -48,7 +49,7 @@ public class IslandReferee : MonoBehaviour
                 potentialWinner = (BoatTeams)i;
             }
         }
-        Debug.Log("there are " + teamsStillInGame + " teams still in the game");
+        PrintGameStatus();
         if (teamsStillInGame < 2)
         {
             AnnounceWinner(potentialWinner);
@@ -98,20 +99,26 @@ public class IslandReferee : MonoBehaviour
 
     void GameSetup()
     {
+        PrintGameStatus();
+        Debug.Log("The total number of teams is " + totalTeams);
+        int randomTurn = Random.Range(0, totalTeams);
+        currentTurn = (BoatTeams)randomTurn;
+        AnnounceTurn();
+    }
+
+    void PrintGameStatus()
+    {
+        Debug.Log("The Current Status Of The Game Is - ");
         int loopCounter = 0;
         foreach (int count in boatCountTotal)
         {
             BoatTeams printshade = (BoatTeams)loopCounter;
             Debug.Log(printshade + " has " + boatCountTotal[loopCounter] + " boats on the team");
-            if(boatCountTotal[loopCounter] > 0)
+            /*if (boatCountTotal[loopCounter] > 0)
             {
                 totalTeams++;
-            }
+            }*/
             loopCounter++;
         }
-        Debug.Log("The total number of teams is " + totalTeams);
-        int randomTurn = Random.Range(0, totalTeams);
-        currentTurn = (BoatTeams)randomTurn;
-        AnnounceTurn();
     }
 }
