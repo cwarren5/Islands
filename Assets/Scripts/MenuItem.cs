@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuItem : MonoBehaviour
 {
     [SerializeField] private int correspondingScene = 2;
+    [SerializeField] private float hoverPushDistance = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,12 @@ public class MenuItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        transform.localPosition = transform.localPosition + Vector3.down;
+        transform.localPosition = transform.localPosition + Vector3.down*hoverPushDistance;
     }
 
     private void OnMouseExit()
     {
-        transform.localPosition = transform.localPosition + Vector3.up;
+        transform.localPosition = transform.localPosition + Vector3.up*hoverPushDistance;
     }
 
     private void OnMouseDown()
