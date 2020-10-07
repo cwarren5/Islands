@@ -38,18 +38,7 @@ public class BombAnimation : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
-    }
-
-    private void OnEnable()
-    {
-        transform.localScale = currentSize;
-        timer = 0;
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }

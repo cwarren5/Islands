@@ -9,26 +9,31 @@ public class PathCreator : MonoBehaviour
     IslandReferee localReferee;
 
     [SerializeField] private float lineFidelity = .25f;
+    [SerializeField] private GameObject bombX = default;
+    private GameObject activeBombX = default;
 
     private LineRenderer boatPath;
     private bool pressed = false;
-    private bool hasBomb = false;
+    public bool hasBomb = false;
     public List<Vector3> points = new List<Vector3>();
     public Action<IEnumerable<Vector3>> OnNewPathCreated = delegate { };
     private Vector3 mOffset;
     private float mZCoord;
     public bool running = false;
+    public int bombPosition = default;
+   
     // Start is called before the first frame update
     void Start()
     {
         boatPath = GetComponent<LineRenderer>();
+        boatPath.enabled = false;
         localReferee = FindObjectOfType<IslandReferee>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        WeaponsCheck();
     }
 
     //Have boat turn collider off when not its turn
@@ -39,7 +44,6 @@ public class PathCreator : MonoBehaviour
         localReferee.dayEnv.SetActive(false);
         pressed = true;
         hasBomb = true;
-        //bombInventory.SetActive(true);
         boatPath.enabled = true;    
     }
 
@@ -56,7 +60,7 @@ public class PathCreator : MonoBehaviour
         localReferee.nightEnv.SetActive(false);
         localReferee.dayEnv.SetActive(true);
         boatPath.enabled = false;
-        //bombX.SetActive(false);
+        Destroy(activeBombX);
     }
 
 
@@ -89,13 +93,17 @@ public class PathCreator : MonoBehaviour
 
     private float DistanceToLastPoint(Vector3 point)
     {
-        if (!points.Any())
+        if (!points.Any()) {return Mathf.Infinity;}
+        else{return Vector3.Distance(points.Last(), point);}
+    }
+
+    private void WeaponsCheck()
+    {
+        if (Input.GetKeyDown("b") && pressed && hasBomb)
         {
-            return Mathf.Infinity;
-        }
-        else
-        {
-            return Vector3.Distance(points.Last(), point);
+            activeBombX = Instantiate(bombX, points[points.Count - 1], Quaternion.identity);
+            bombPosition = points.Count - 1;
+            hasBomb = false;
         }
     }
 }

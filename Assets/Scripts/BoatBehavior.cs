@@ -80,19 +80,13 @@ public class BoatBehavior : MonoBehaviour
             var tempParticleRenderer = tempExplodingTarget.GetComponent<Renderer>();
             tempParticleRenderer.material.SetColor("_Color", localReferee.boatShades[(int)boatColor]);
             InitiateNextPlayerTurn();
-            //dead = true;
-            DestroyBoatAssembly();
-            //Invoke("DestroyBoat", 1.0f);
-            
+            DestroyBoatAssembly();            
         }
 
-        /*if (other.tag == "enemybomb" && !running)
+        if (other.tag == "enemybomb" && !pathScript.running)
         {
-            explodingParticles.SetActive(true);
-            boatRender.SetActive(false);
-            dead = true;
-            Invoke("DestroyBoat", 1.0f);
-        }*/
+            DestroyBoatAssembly();
+        }
     }
 
     private void DestroyBoatAssembly()
@@ -108,10 +102,11 @@ public class BoatBehavior : MonoBehaviour
     }
     private void LayBomb()
     {
-        /*if (bombPosition == runPosition && !hasBomb && !dead)
+        if (pathScript.bombPosition == runPosition && !pathScript.hasBomb)
         {
-            bombBlast.SetActive(true);
-            bombBlast.transform.position = points[bombPosition];
-        }*/
+            /*bombBlast.SetActive(true);
+            bombBlast.transform.position = points[bombPosition];*/
+            Instantiate(bombBlast, transform.position, Quaternion.identity);
+        }
     }
 }
