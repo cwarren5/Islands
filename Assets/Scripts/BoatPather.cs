@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BoatPather : MonoBehaviour
 {
+    IslandReferee localReferee;
+    
     //Effects and Objects
     [SerializeField] private GameObject boatRender = default;
     [SerializeField] private GameObject nightShade = default;
@@ -24,9 +26,7 @@ public class BoatPather : MonoBehaviour
     //Path Settings
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private float lineFidelity = .25f;
-
-    
-    [SerializeField] private IslandReferee.BoatColors boatColor = default;
+    [SerializeField] private IslandReferee.BoatTeams boatColor = default;
 
     //Path Variables
     private LineRenderer boatPath;
@@ -37,6 +37,8 @@ public class BoatPather : MonoBehaviour
     private bool running = false;
     private int runPosition = 0;
     private Rigidbody boatRigid;
+
+
     
     void Start()
     {
@@ -45,6 +47,8 @@ public class BoatPather : MonoBehaviour
         nightShade.SetActive(false);
         bombX.SetActive(false);
         boatPath.enabled = false;
+        localReferee = FindObjectOfType<IslandReferee>();
+        localReferee.boatCountTotal[(int)boatColor] += 1;
     }
 
     void Update()
@@ -60,7 +64,7 @@ public class BoatPather : MonoBehaviour
     //Mouse Actions when player clicks a boat
     void OnMouseDown()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {      
             CreateNewBoatPath();
             nightShade.SetActive(true);
@@ -75,7 +79,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {
             DrawBoatPath();
         }
@@ -83,7 +87,7 @@ public class BoatPather : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (boatColor == IslandReferee.currentTurn)
+        if (boatColor == localReferee.currentTurn)
         {
             running = true;
             runPosition = 0;
@@ -120,14 +124,20 @@ public class BoatPather : MonoBehaviour
 
     private void DestroyBoat()
     {
-        if (boatColor == IslandReferee.BoatColors.Red)
+        /*if (boatColor == IslandReferee.BoatTeams.Red)
         {
             IslandReferee.redBoatCount -= 1;
         }
-        if (boatColor == IslandReferee.BoatColors.Yellow)
+        if (boatColor == IslandReferee.BoatTeams.Yellow)
         {
             IslandReferee.yellowBoatCount -= 1;
-        }
+        }*/
+        localReferee.boatCountTotal[(int)boatColor] -= 1;
+        /*if (localRef.boatCountTotal[(int)boatColor] == 0)
+        {
+            localRef.AnnounceWinner(boatColor);
+        }*/
+        localReferee.CheckForWinner();
         Destroy(gameObject);
     }
 
@@ -135,14 +145,7 @@ public class BoatPather : MonoBehaviour
 
     private void InitiateNextPlayerTurn()
     {
-        int nextTurn = (int)IslandReferee.currentTurn;
-        nextTurn += 1;
-        int totalEnumItems = IslandReferee.BoatColors.GetNames(typeof(IslandReferee.BoatColors)).Length;
-        if (nextTurn == totalEnumItems)
-        {
-            nextTurn = 0;
-        }
-        IslandReferee.currentTurn = (IslandReferee.BoatColors)nextTurn;
+        localReferee.GoToNextTurn();
     }
 
     private void WeaponsCheck()

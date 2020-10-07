@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: aae801b40e5ae494db38f24af28219e9
   - enabled: 1
-    path: Assets/Scenes/HifiPass1.unity
-    guid: f70e530399819c04298eabd73ab7f62c
+    path: Assets/Scenes/HifiModular.unity
+    guid: 951889641455a2c4f85bf0b96d5d1575
   m_configObjects: {}
