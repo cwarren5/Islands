@@ -92,6 +92,7 @@ public class BoatBehavior : MonoBehaviour
     private void DestroyBoatAssembly()
     {
         localReferee.boatCountTotal[(int)boatColor] -= 1;
+        Debug.Log(localReferee.boatCountTotal[(int)boatColor]);
         localReferee.CheckForWinner();
         Destroy(myBoatPath);
         Destroy(gameObject);
