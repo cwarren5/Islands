@@ -20,7 +20,7 @@ public class IslandReferee : MonoBehaviour
     //Sets up game after all boats have time to report back
     void Start()
     {
-        Invoke("GameSetup", 0.1f);
+        Invoke("GameSetup", 0.01f);
         winnerDeclaired = false;
         totalTeams = 4;
     }
@@ -101,8 +101,16 @@ public class IslandReferee : MonoBehaviour
     {
         PrintGameStatus();
         Debug.Log("The total number of teams is " + totalTeams);
-        int randomTurn = Random.Range(0, totalTeams);
-        currentTurn = (BoatTeams)randomTurn;
+        bool foundAStartingTurn = false;
+        while (!foundAStartingTurn)
+        {
+            int randomTurn = Random.Range(0, totalTeams);
+            currentTurn = (BoatTeams)randomTurn;
+            if (boatCountTotal[(int)currentTurn] > 0)
+            {
+                foundAStartingTurn = true;
+            }
+        }
         AnnounceTurn();
     }
 
