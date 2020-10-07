@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d95f7fbb52abb4f9e487d207678a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodingParticles: {fileID: 0}
+  explodingParticlesPrefab: {fileID: 6041011596088089603, guid: 04e8d2d0fc0e9d94b93e9eed88d421ca, type: 3}
   bombBlast: {fileID: 0}
   boatPatherPrefab: {fileID: 3661334707121538653, guid: 64118da804fb7534d8a33ae59ae2c3a2, type: 3}
   speed: 15

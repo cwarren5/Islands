@@ -6,14 +6,13 @@ public class BoatBehavior : MonoBehaviour
 {
     IslandReferee localReferee;
 
-    [SerializeField] private GameObject explodingParticles = default;
+    [SerializeField] private GameObject explodingParticlesPrefab = default;
     [SerializeField] private GameObject bombBlast = default;
     [SerializeField] private GameObject boatPatherPrefab = default;
     private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private IslandReferee.BoatTeams boatColor = default;
 
-    private bool running = false;
     private bool dead = false;
     private int runPosition = 0;
 
@@ -34,6 +33,8 @@ public class BoatBehavior : MonoBehaviour
             PlayBoatAlongPath();
             LayBomb();
         }
+        if(localReferee.currentTurn != boatColor){myBoatPath.SetActive(false);}
+        else{ myBoatPath.SetActive(true);}
     }
 
     private void PlayBoatAlongPath()
@@ -65,6 +66,7 @@ public class BoatBehavior : MonoBehaviour
                 //InitiateNextPlayerTurn();
             }
             pathScript.running = false;
+            InitiateNextPlayerTurn();
             runPosition = 0;
             myBoatPath.transform.position = transform.position;
         }
@@ -74,13 +76,14 @@ public class BoatBehavior : MonoBehaviour
     {
         if (other.tag == "island")
         {
-            explodingParticles.transform.position = transform.position;
-            explodingParticles.SetActive(true);
+            var tempExplodingTarget = Instantiate(explodingParticlesPrefab, transform.position, Quaternion.identity);
+            var tempParticleRenderer = tempExplodingTarget.GetComponent<Renderer>();
+            tempParticleRenderer.material.SetColor("_Color", localReferee.boatShades[(int)boatColor]);
+            InitiateNextPlayerTurn();
             //dead = true;
-            //InitiateNextPlayerTurn();
+            DestroyBoatAssembly();
             //Invoke("DestroyBoat", 1.0f);
-            Destroy(myBoatPath);
-            Destroy(gameObject);
+            
         }
 
         /*if (other.tag == "enemybomb" && !running)
@@ -92,6 +95,17 @@ public class BoatBehavior : MonoBehaviour
         }*/
     }
 
+    private void DestroyBoatAssembly()
+    {
+        localReferee.boatCountTotal[(int)boatColor] -= 1;
+        localReferee.CheckForWinner();
+        Destroy(myBoatPath);
+        Destroy(gameObject);
+    }
+    private void InitiateNextPlayerTurn()
+    {
+        localReferee.GoToNextTurn();
+    }
     private void LayBomb()
     {
         /*if (bombPosition == runPosition && !hasBomb && !dead)
