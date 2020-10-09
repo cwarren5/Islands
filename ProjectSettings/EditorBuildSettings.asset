@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Current Scenes/Level2-4PlayerTest.unity
     guid: 40bc140c63ed8d24c806f8416b1af7fb
+  - enabled: 1
+    path: Assets/Scenes/Current Scenes/ExpertsFor2.unity
+    guid: e562a2944beef1e4180bc238cf4f18a4
   m_configObjects: {}

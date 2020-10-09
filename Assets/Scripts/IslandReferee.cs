@@ -10,7 +10,7 @@ public class IslandReferee : MonoBehaviour
     [SerializeField] public GameObject nightEnv = default;
     [SerializeField] public GameObject dayEnv = default;
 
-    public enum BoatTeams {Red, Yellow, White, Pink};
+    public enum BoatTeams {Red, Yellow, White, Black};
     public BoatTeams currentTurn = BoatTeams.Red;
     public Color[] boatShades = new Color[4];
     public int[] boatCountTotal = new int[4];
