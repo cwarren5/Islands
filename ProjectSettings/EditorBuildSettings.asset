@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Current Scenes/ExpertsFor2.unity
     guid: e562a2944beef1e4180bc238cf4f18a4
+  - enabled: 1
+    path: Assets/Scenes/SuperEasyGabe Mode.unity
+    guid: af7a08c089a69b54582c409b17116267
   m_configObjects: {}
