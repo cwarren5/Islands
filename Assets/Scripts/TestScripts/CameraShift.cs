@@ -8,11 +8,15 @@ public class CameraShift : MonoBehaviour
     [SerializeField] float mouseRange = 15.0f;
     private float mouseXClamp = 0;
     private float mouseYClamp = 0;
+    private Quaternion defaultTilt = default;
+
+    [SerializeField] private float transitionSpeed = 1.0f;
+    private float lerpProgress = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        defaultTilt = transform.localRotation;
     }
 
     // Update is called once per frame
@@ -36,10 +40,16 @@ public class CameraShift : MonoBehaviour
             mouseX = 0;
         }
 
-        Vector3 movementVectorX = new Vector3(mouseY, 0, mouseX);
-        transform.Rotate(movementVectorX * camSensitivity);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-        
 
+        if (Input.GetMouseButton(0))
+        {
+            transform.localRotation = defaultTilt;
+        }
+        else
+        {
+            Vector3 movementVectorX = new Vector3(mouseY, 0, mouseX);
+            transform.Rotate(movementVectorX * camSensitivity);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+        }
     }
 }

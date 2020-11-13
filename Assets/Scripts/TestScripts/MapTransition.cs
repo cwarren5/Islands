@@ -21,19 +21,21 @@ public class MapTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1) && lerpProgress < 1)
+        if (Input.GetMouseButton(0) && lerpProgress < 1)
         {
             LerpTerrainScale();
             LerpWaterTransparency();
 
             lerpProgress += Time.deltaTime * transitionSpeed;
+            lerpProgress = Mathf.Clamp(lerpProgress, 0, 1);
         }
-        else if (!Input.GetMouseButton(1) && lerpProgress > 0)
+        else if (!Input.GetMouseButton(0) && lerpProgress > 0)
         {
             LerpTerrainScale();
             LerpWaterTransparency();
 
             lerpProgress -= Time.deltaTime * transitionSpeed;
+            lerpProgress = Mathf.Clamp(lerpProgress, 0, 1);
         }
     }
 

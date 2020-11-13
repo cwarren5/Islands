@@ -40,8 +40,8 @@ public class PathCreator : MonoBehaviour
     void OnMouseDown()
     {
         CreateNewBoatPath();
-        localReferee.nightEnv.SetActive(true);
-        localReferee.dayEnv.SetActive(false);
+        //localReferee.nightEnv.SetActive(true);
+        //localReferee.dayEnv.SetActive(false);
         pressed = true;
         hasBomb = true;
         boatPath.enabled = true;    
@@ -57,8 +57,8 @@ public class PathCreator : MonoBehaviour
         running = true;
         //runPosition = 0;
         pressed = false;
-        localReferee.nightEnv.SetActive(false);
-        localReferee.dayEnv.SetActive(true);
+        //localReferee.nightEnv.SetActive(false);
+        //localReferee.dayEnv.SetActive(true);
         boatPath.enabled = false;
         Destroy(activeBombX);
     }

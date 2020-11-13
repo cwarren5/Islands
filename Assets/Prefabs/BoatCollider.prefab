@@ -65,7 +65,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a812a0aa7d0d6646854bb892198824e, type: 2}
+  - {fileID: 2100000, guid: 510951e5db5c52c469b77c63f64425c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineFidelity: 0.25
   bombX: {fileID: 859439399006154004, guid: 6dbf4f3732becdf4b93d84b00ac2228a, type: 3}
+  hasBomb: 0
   points: []
   running: 0
   bombPosition: 0
