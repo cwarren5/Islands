@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/Title Screen.unity
+    path: Assets/Scenes/Geometry Scenes/Title Screen.unity
     guid: 8b98f5772a714614293cc0d84c114111
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/MainMenu.unity
+    path: Assets/Scenes/Geometry Scenes/MainMenu.unity
     guid: aae801b40e5ae494db38f24af28219e9
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/HifiModular.unity
+    path: Assets/Scenes/Geometry Scenes/HifiModular.unity
     guid: 951889641455a2c4f85bf0b96d5d1575
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/Level2-4PlayerTest.unity
+    path: Assets/Scenes/Geometry Scenes/Level2-4PlayerTest.unity
     guid: 40bc140c63ed8d24c806f8416b1af7fb
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/ExpertsFor2.unity
+    path: Assets/Scenes/Geometry Scenes/ExpertsFor2.unity
     guid: e562a2944beef1e4180bc238cf4f18a4
   - enabled: 1
-    path: Assets/Scenes/SuperEasyGabe Mode.unity
+    path: Assets/Scenes/Archived Scenes/SuperEasyGabe Mode.unity
     guid: af7a08c089a69b54582c409b17116267
   m_configObjects: {}

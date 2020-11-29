@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 33.617153
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 43ec637eabb324b4a849286c6669124e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 43ec637eabb324b4a849286c6669124e, type: 3}
       propertyPath: m_Name
       value: blastTorus
@@ -325,6 +329,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 43ec637eabb324b4a849286c6669124e, type: 3}
       propertyPath: m_TagString
       value: enemybomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43ec637eabb324b4a849286c6669124e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ec637eabb324b4a849286c6669124e, type: 3}
