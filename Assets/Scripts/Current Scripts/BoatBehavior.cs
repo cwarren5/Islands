@@ -9,6 +9,8 @@ public class BoatBehavior : MonoBehaviour
     [SerializeField] private GameObject explodingParticlesPrefab = default;
     [SerializeField] private GameObject bombBlast = default;
     [SerializeField] private GameObject boatPatherPrefab = default;
+    [SerializeField] private GameObject turnHighlighter = default;
+    private GameObject bombIcon = default;
     private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private IslandReferee.BoatTeams boatColor = default;
@@ -24,6 +26,8 @@ public class BoatBehavior : MonoBehaviour
         localReferee.boatCountTotal[(int)boatColor] += 1;
         myBoatPath = Instantiate(boatPatherPrefab, transform.position, Quaternion.identity);
         pathScript = myBoatPath.GetComponent<PathCreator>();
+        turnHighlighter.SetActive(false);
+        bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
     }
 
     void Update()
@@ -33,8 +37,16 @@ public class BoatBehavior : MonoBehaviour
             PlayBoatAlongPath();
             LayBomb();
         }
-        if(localReferee.currentTurn != boatColor){myBoatPath.SetActive(false);}
-        else{ myBoatPath.SetActive(true);}
+        if(localReferee.currentTurn != boatColor)
+        {
+            myBoatPath.SetActive(false);
+            turnHighlighter.SetActive(false);
+        }
+        else
+        {
+            turnHighlighter.SetActive(true);
+            myBoatPath.SetActive(true);
+        }
     }
 
     private void PlayBoatAlongPath()
@@ -94,6 +106,7 @@ public class BoatBehavior : MonoBehaviour
     }
     private void InitiateNextPlayerTurn()
     {
+        bombIcon.SetActive(true);
         localReferee.GoToNextTurn();
     }
     private void LayBomb()

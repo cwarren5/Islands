@@ -12,10 +12,11 @@ public class IslandReferee : MonoBehaviour
 
     public enum BoatTeams {Red, Yellow, White, Black};
     public BoatTeams currentTurn = BoatTeams.Red;
+    public BoatTeams winnerDeclaration = default;
     public Color[] boatShades = new Color[4];
     public int[] boatCountTotal = new int[4];
     public int totalTeams = 4;
-    private bool winnerDeclaired = false;
+    public bool winnerDeclaired = false;
  
     //Sets up game after all boats have time to report back
     void Start()
@@ -62,9 +63,10 @@ public class IslandReferee : MonoBehaviour
         if (!winnerDeclaired) { 
             winnerDeclaired = true;
             Debug.Log("The winning team is " + winningTeam);
-            statusText.text = winningTeam + " Wins!";
-            statusText.color = boatShades[(int)winningTeam];
-            statusShadow.text = statusText.text;
+            //statusText.text = winningTeam + " Wins!";
+            //statusText.color = boatShades[(int)winningTeam];
+            //statusShadow.text = statusText.text;
+            winnerDeclaration = winningTeam;
             Invoke("GoToMainMenu", 5.0f);
         }
     }

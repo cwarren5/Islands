@@ -10,6 +10,7 @@ public class PathCreator : MonoBehaviour
 
     [SerializeField] private float lineFidelity = .25f;
     [SerializeField] private GameObject bombX = default;
+    [SerializeField] private GameObject bombIcon = default;
     private GameObject activeBombX = default;
 
     private LineRenderer boatPath;
@@ -28,6 +29,7 @@ public class PathCreator : MonoBehaviour
         boatPath = GetComponent<LineRenderer>();
         boatPath.enabled = false;
         localReferee = FindObjectOfType<IslandReferee>();
+        bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class PathCreator : MonoBehaviour
     {
         CreateNewBoatPath();
         //localReferee.nightEnv.SetActive(true);
-        //localReferee.dayEnv.SetActive(false);
+        localReferee.dayEnv.SetActive(false);
         pressed = true;
         hasBomb = true;
         boatPath.enabled = true;    
@@ -58,7 +60,7 @@ public class PathCreator : MonoBehaviour
         //runPosition = 0;
         pressed = false;
         //localReferee.nightEnv.SetActive(false);
-        //localReferee.dayEnv.SetActive(true);
+        localReferee.dayEnv.SetActive(true);
         boatPath.enabled = false;
         Destroy(activeBombX);
     }
@@ -104,6 +106,7 @@ public class PathCreator : MonoBehaviour
             activeBombX = Instantiate(bombX, points[points.Count - 1], Quaternion.identity);
             bombPosition = points.Count - 1;
             hasBomb = false;
+            bombIcon.SetActive(false);
         }
     }
 }

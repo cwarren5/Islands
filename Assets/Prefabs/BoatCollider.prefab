@@ -96,17 +96,17 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.28926086
-        inSlope: 2.4470744
-        outSlope: 2.4470744
+        time: 0.0041160583
+        value: 0.5147476
+        inSlope: -0.02555993
+        outSlope: -0.02555993
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.28544515
+        outWeight: 0.38603404
       - serializedVersion: 3
-        time: 0.496922
-        value: 0.8582936
+        time: 0.5051465
+        value: 0.505354
         inSlope: -0.07096976
         outSlope: -0.07096976
         tangentMode: 0
@@ -115,12 +115,12 @@ LineRenderer:
         outWeight: 0.4290467
       - serializedVersion: 3
         time: 1
-        value: 0.71900743
-        inSlope: -0.46612042
-        outSlope: -0.46612042
+        value: 0.49351686
+        inSlope: -0.18171808
+        outSlope: -0.18171808
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.35244036
+        inWeight: 0.3991704
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineFidelity: 0.25
   bombX: {fileID: 859439399006154004, guid: 6dbf4f3732becdf4b93d84b00ac2228a, type: 3}
+  bombIcon: {fileID: 0}
   hasBomb: 0
   points: []
   running: 0
