@@ -24,19 +24,21 @@ public class MapTransition : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && lerpProgress < 1)
         {
-            LerpTerrainScale();
-            LerpWaterTransparency();
+            
 
             lerpProgress += Time.deltaTime * transitionSpeed;
             lerpProgress = Mathf.Clamp(lerpProgress, 0, 1);
+            LerpTerrainScale();
+            LerpWaterTransparency();
         }
         else if (!Input.GetMouseButton(0) && lerpProgress > 0)
         {
-            LerpTerrainScale();
-            LerpWaterTransparency();
+            
 
             lerpProgress -= Time.deltaTime * transitionSpeed;
             lerpProgress = Mathf.Clamp(lerpProgress, 0, 1);
+            LerpTerrainScale();
+            LerpWaterTransparency();
         }
     }
 

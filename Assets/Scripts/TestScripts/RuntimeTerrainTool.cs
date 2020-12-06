@@ -66,6 +66,9 @@ public class RuntimeTerrainTool : MonoBehaviour
         //Change terrain layer to UI
         terrain.gameObject.layer = 5;
         brushScaling();
+        int resolution = 129;
+        float[,] heightArray = new float[resolution, resolution];
+        tData.SetHeights(0, 0, heightArray);
     }
 
     // Update is called once per frame
