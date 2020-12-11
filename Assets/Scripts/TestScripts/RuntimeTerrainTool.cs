@@ -12,8 +12,9 @@ public class RuntimeTerrainTool : MonoBehaviour
     public Terrain terrain;
     public Texture2D deformTexture;
     public float strength = 1;
-    public float area = 1;
+    public float area = 1; 
     public bool showHelp;
+    public Camera mainSceneCamera;
 
     Transform buildTarget;
     Vector3 buildTargPos;
@@ -84,7 +85,7 @@ public class RuntimeTerrainTool : MonoBehaviour
 
     void raycastHit()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainSceneCamera.ScreenPointToRay(Input.mousePosition);
         hit = new RaycastHit();
         //Do Raycast hit only against UI layer
         if (Physics.Raycast(ray, out hit, 300, 1 << 5))
@@ -100,7 +101,7 @@ public class RuntimeTerrainTool : MonoBehaviour
             if (buildTarget)
             {
                 Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 200);
-                Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
+                Vector3 curPosition = mainSceneCamera.ScreenToWorldPoint(curScreenPoint);
                 buildTarget.position = curPosition;
                 onTerrain = false;
             }

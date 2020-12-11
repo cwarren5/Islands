@@ -6,6 +6,7 @@ public class MapTransition : MonoBehaviour
 {
     [SerializeField] private MeshRenderer waterMaterial = default;
     [SerializeField] private float transitionSpeed = 1;
+    [SerializeField] private GameObject seaWalls = default;
     [SerializeField] Terrain topographicMap = default;
     private float startingWaterTans = default;
     private float startingYScale = default;
@@ -14,7 +15,7 @@ public class MapTransition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startingYScale = transform.localScale.y;
+        startingYScale = seaWalls.transform.localScale.y;
         startingWaterTans = waterMaterial.material.color.a;
         currentScale = startingYScale;
     }
@@ -52,7 +53,7 @@ public class MapTransition : MonoBehaviour
     private void LerpTerrainScale()
     {
         currentScale = Mathf.Lerp(startingYScale, .1f, lerpProgress);
-        transform.localScale = new Vector3(transform.localScale.x, currentScale, transform.localScale.z);
+        seaWalls.transform.localScale = new Vector3(seaWalls.transform.localScale.x, currentScale, seaWalls.transform.localScale.z);
         float currentTerrainHeight = Mathf.Lerp(100, 0f, lerpProgress);
         topographicMap.terrainData.size = new Vector3(topographicMap.terrainData.size.x, currentTerrainHeight, topographicMap.terrainData.size.z);
     }
