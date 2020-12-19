@@ -9,6 +9,7 @@ public class IslandReferee : MonoBehaviour
     [SerializeField] private TextMesh statusShadow = default;
     [SerializeField] public GameObject nightEnv = default;
     [SerializeField] public GameObject dayEnv = default;
+    [SerializeField] public int nextScene = 1;
 
     public enum BoatTeams {Red, Yellow, White, Black};
     public BoatTeams currentTurn = BoatTeams.Red;
@@ -32,9 +33,9 @@ public class IslandReferee : MonoBehaviour
     }
 
     // for use by other scripts
-    private void GoToMainMenu()
+    private void GoToScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(nextScene);
     }
 
     // checks to see if someone won the game every time a ship is destroyed
@@ -67,7 +68,7 @@ public class IslandReferee : MonoBehaviour
             //statusText.color = boatShades[(int)winningTeam];
             //statusShadow.text = statusText.text;
             winnerDeclaration = winningTeam;
-            Invoke("GoToMainMenu", 5.0f);
+            Invoke("GoToScene", 5.0f);
         }
     }
 

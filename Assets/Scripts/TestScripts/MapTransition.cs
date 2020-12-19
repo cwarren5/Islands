@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapTransition : MonoBehaviour
 {
     [SerializeField] private MeshRenderer waterMaterial = default;
-    [SerializeField] private float transitionSpeed = 1;
+    [SerializeField] public float transitionSpeed = 1;
     [SerializeField] private GameObject seaWalls = default;
     [SerializeField] Terrain topographicMap = default;
     private float startingWaterTans = default;
