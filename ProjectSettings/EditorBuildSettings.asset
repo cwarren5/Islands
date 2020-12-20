@@ -29,7 +29,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Archived Scenes/SuperEasyGabe Mode.unity
     guid: af7a08c089a69b54582c409b17116267
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1st Demo/T2 Land Ho.unity
     guid: 550e7e2623498de4792ecb1e3b1e95c0
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T2 Fishing Prep.unity
+    guid: 8761807d8bb924741aab0db8d973cd8f
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T3 Stranded.unity
+    guid: 9e5cf232d1bdeec4c8e5e8e10d91c394
   m_configObjects: {}

@@ -10,6 +10,7 @@ public class DayCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<TextMesh>().text = "" + daysAtSea;
         localReferee = FindObjectOfType<IslandReferee>();
     }
 
