@@ -38,4 +38,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1st Demo/T3 Stranded.unity
     guid: 9e5cf232d1bdeec4c8e5e8e10d91c394
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T4 The Delta.unity
+    guid: b19c0fab550f2c044a823ff6ac09c9fe
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T5 Enemy Encounter.unity
+    guid: 343532a61fb33b0418e2406141e7f873
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T6 Enemy Patrol.unity
+    guid: 392ea8429e4bf624593bec2d1c0fe4ac
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T7 Theft.unity
+    guid: 9fc614f5f78db3b458dbbb8a37c59ecb
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T8 River Run.unity
+    guid: e041e87e9f7164f4bac054d515c3d86b
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T9 Escape.unity
+    guid: e9e5c1b4188797b4a8d13012a493eaa4
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Medium Map.unity
+    guid: 6ce54a8364393664ca2f8ffa4af35f05
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Hard Map.unity
+    guid: 25330e45a3e8341478bafce863235709
   m_configObjects: {}

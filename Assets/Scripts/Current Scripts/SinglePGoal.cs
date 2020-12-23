@@ -13,7 +13,7 @@ public class SinglePGoal : MonoBehaviour
     void Start()
     {
         localReferee = FindObjectOfType<IslandReferee>();
-        localReferee.boatCountTotal[(int)boatColor] += 1;
+        localReferee.boatCountTotal[0] += 1;
     }
 
     // Update is called once per frame
@@ -21,10 +21,11 @@ public class SinglePGoal : MonoBehaviour
     {
         if(localReferee.currentTurn == boatColor)
         {
-            localReferee.GoToNextTurn();
+            //localReferee.GoToNextTurn();
             if (shipLanded)
             {
-                localReferee.boatCountTotal[(int)boatColor] -= 1;
+                localReferee.boatCountTotal[0] -= 1;
+                shipLanded = false;
                 if (sendToNextGoal)
                 {
                     nextGoal.SetActive(true);
@@ -41,8 +42,10 @@ public class SinglePGoal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        shipLanded = true;
-        
+        if (other.tag != "enemyship" && other.tag != "island")
+        {
+            shipLanded = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
