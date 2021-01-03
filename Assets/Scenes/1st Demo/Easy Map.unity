@@ -3809,6 +3809,10 @@ PrefabInstance:
       propertyPath: dayEnv
       value: 
       objectReference: {fileID: 1918219270}
+    - target: {fileID: 8688181764646528573, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
+      propertyPath: nextScene
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
 --- !u!33 &8818938927514318356
