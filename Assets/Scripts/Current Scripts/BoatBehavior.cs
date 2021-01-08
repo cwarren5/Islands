@@ -10,6 +10,7 @@ public class BoatBehavior : MonoBehaviour
     [SerializeField] private GameObject bombBlast = default;
     [SerializeField] private GameObject boatPatherPrefab = default;
     [SerializeField] private GameObject turnHighlighter = default;
+    [SerializeField] private GameObject anchorIcon = default;
     private GameObject bombIcon = default;
     private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
@@ -17,6 +18,9 @@ public class BoatBehavior : MonoBehaviour
 
     private bool dead = false;
     private int runPosition = 0;
+    private bool beached = false;
+    private int timeOut = 0;
+    private bool turnMonitor = true;
 
     PathCreator pathScript;
 
@@ -28,6 +32,7 @@ public class BoatBehavior : MonoBehaviour
         pathScript = myBoatPath.GetComponent<PathCreator>();
         turnHighlighter.SetActive(false);
         bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
+        anchorIcon.SetActive(false);
     }
 
     void Update()
@@ -37,20 +42,40 @@ public class BoatBehavior : MonoBehaviour
             PlayBoatAlongPath();
             LayBomb();
         }
-        if(localReferee.currentTurn != boatColor)
+        if (localReferee.currentTurn != boatColor)
         {
             myBoatPath.SetActive(false);
             turnHighlighter.SetActive(false);
+            
+            if (turnMonitor && beached)
+            {
+                timeOut++;
+                turnMonitor = false;
+                anchorIcon.SetActive(true);
+
+            }
         }
         else
         {
-            turnHighlighter.SetActive(true);
-            myBoatPath.SetActive(true);
+            if (!beached || timeOut > 3)
+            {
+                turnHighlighter.SetActive(true);
+                myBoatPath.SetActive(true);
+                anchorIcon.SetActive(false);
+            }
+            if (!turnMonitor && beached)
+            {
+                timeOut++;
+                turnMonitor = true;
+            }
         }
+
+
     }
 
     private void PlayBoatAlongPath()
     {
+        beached = false;
         if (runPosition + 1 <= pathScript.points.Count)
         {
             Vector3 target = pathScript.points[runPosition];
@@ -82,10 +107,20 @@ public class BoatBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "island")
+        if(other.tag == "sandIsland")
         {
-            InitiateNextPlayerTurn();
-            InitiateSelfDestruct();            
+            if (!beached)
+            {
+                anchorIcon.SetActive(true);
+                beached = true;
+                timeOut = 0;
+                runPosition = pathScript.points.Count;
+            }
+        }
+        if (other.tag == "island")
+        {       
+                InitiateNextPlayerTurn();
+                InitiateSelfDestruct();        
         }
 
         if (other.tag == "enemybomb" && !pathScript.running)

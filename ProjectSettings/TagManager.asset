@@ -9,6 +9,7 @@ TagManager:
   - targetZone
   - bombIcon
   - enemyship
+  - sandIsland
   layers:
   - Default
   - TransparentFX
