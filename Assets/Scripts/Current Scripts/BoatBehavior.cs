@@ -127,6 +127,17 @@ public class BoatBehavior : MonoBehaviour
         {
             InitiateSelfDestruct();
         }
+
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "sharkWaters" && !pathScript.running)
+        {
+            Debug.Log("In Shark Waters");
+            InitiateSelfDestruct();
+        }
     }
 
     private void InitiateSelfDestruct()
