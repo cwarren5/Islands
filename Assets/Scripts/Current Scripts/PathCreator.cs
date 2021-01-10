@@ -10,19 +10,23 @@ public class PathCreator : MonoBehaviour
 
     [SerializeField] private float lineFidelity = .25f;
     [SerializeField] private GameObject bombX = default;
+    [SerializeField] private GameObject mineM = default;
     [SerializeField] private GameObject bombIcon = default;
     private GameObject activeBombX = default;
+    private GameObject activeMineM = default;
 
     private LineRenderer boatPath;
     private bool pressed = false;
     public bool hasBomb = false;
+    public bool droppedMine = false;
     public List<Vector3> points = new List<Vector3>();
     public Action<IEnumerable<Vector3>> OnNewPathCreated = delegate { };
     private Vector3 mOffset;
     private float mZCoord;
     public bool running = false;
     public int bombPosition = default;
-   
+    public int minePosition = default;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +67,7 @@ public class PathCreator : MonoBehaviour
         localReferee.dayEnv.SetActive(true);
         boatPath.enabled = false;
         Destroy(activeBombX);
+        Destroy(activeMineM);
     }
 
 
@@ -107,6 +112,14 @@ public class PathCreator : MonoBehaviour
             bombPosition = points.Count - 1;
             hasBomb = false;
             bombIcon.SetActive(false);
+        }
+        if (Input.GetKeyDown("m") && pressed && !localReferee.usedMine[(int)localReferee.currentTurn])
+        {
+            activeMineM = Instantiate(mineM, points[points.Count - 1], Quaternion.identity);
+            minePosition = points.Count - 1;
+            droppedMine = true;
+            //localReferee.usedMine[0] = true;
+            //bombIcon.SetActive(false);
         }
     }
 }

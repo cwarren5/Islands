@@ -211,10 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explodingParticlesPrefab: {fileID: 6041011596088089603, guid: 04e8d2d0fc0e9d94b93e9eed88d421ca, type: 3}
   bombBlast: {fileID: 2378095887580340292, guid: b8cfd98339e67c745826247541d939dd, type: 3}
+  mine: {fileID: 4192232992149915072, guid: 0c0f975064b86704699215de52084f12, type: 3}
   boatPatherPrefab: {fileID: 3661334707121538653, guid: 64118da804fb7534d8a33ae59ae2c3a2, type: 3}
   turnHighlighter: {fileID: 843358842469102740}
   anchorIcon: {fileID: 3333296651182500291}
-  speed: 10
+  speed: 15
   boatColor: 0
 --- !u!54 &5898475583365832958
 Rigidbody:

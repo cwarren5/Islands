@@ -11,6 +11,7 @@ TagManager:
   - enemyship
   - sandIsland
   - sharkWaters
+  - mineIcon
   layers:
   - Default
   - TransparentFX

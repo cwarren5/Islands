@@ -18,6 +18,7 @@ public class IslandReferee : MonoBehaviour
     public int[] boatCountTotal = new int[4];
     public int totalTeams = 4;
     public bool winnerDeclaired = false;
+    public bool[] usedMine = new bool[4];
  
     //Sets up game after all boats have time to report back
     void Start()

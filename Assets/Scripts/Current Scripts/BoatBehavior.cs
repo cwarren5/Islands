@@ -8,10 +8,12 @@ public class BoatBehavior : MonoBehaviour
 
     [SerializeField] private GameObject explodingParticlesPrefab = default;
     [SerializeField] private GameObject bombBlast = default;
+    [SerializeField] private GameObject mine = default;
     [SerializeField] private GameObject boatPatherPrefab = default;
     [SerializeField] private GameObject turnHighlighter = default;
     [SerializeField] private GameObject anchorIcon = default;
     private GameObject bombIcon = default;
+    private GameObject mineIcon = default;
     private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private IslandReferee.BoatTeams boatColor = default;
@@ -32,6 +34,7 @@ public class BoatBehavior : MonoBehaviour
         pathScript = myBoatPath.GetComponent<PathCreator>();
         turnHighlighter.SetActive(false);
         bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
+        mineIcon = GameObject.FindGameObjectWithTag("mineIcon");
         anchorIcon.SetActive(false);
     }
 
@@ -41,6 +44,7 @@ public class BoatBehavior : MonoBehaviour
         {
             PlayBoatAlongPath();
             LayBomb();
+            LayMine();
         }
         if (localReferee.currentTurn != boatColor)
         {
@@ -154,6 +158,7 @@ public class BoatBehavior : MonoBehaviour
     {
         bombIcon.SetActive(true);
         localReferee.GoToNextTurn();
+        mineIcon.SetActive(!localReferee.usedMine[(int)localReferee.currentTurn]);
     }
     private void LayBomb()
     {
@@ -163,6 +168,17 @@ public class BoatBehavior : MonoBehaviour
             bombBlast.transform.position = points[bombPosition];*/
             Instantiate(bombBlast, transform.position, Quaternion.identity);
             pathScript.hasBomb = true;
+        }
+    }
+
+    private void LayMine()
+    {
+        if (pathScript.minePosition == runPosition && !localReferee.usedMine[(int)boatColor] && pathScript.droppedMine)
+        {
+            GameObject myBomb = Instantiate(mine, transform.position, Quaternion.identity);
+            myBomb.transform.SetParent(gameObject.transform.parent);
+            localReferee.usedMine[(int)boatColor] = true;
+            mineIcon.SetActive(false);
         }
     }
 }

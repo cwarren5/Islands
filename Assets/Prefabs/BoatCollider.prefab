@@ -176,8 +176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineFidelity: 0.25
   bombX: {fileID: 859439399006154004, guid: 6dbf4f3732becdf4b93d84b00ac2228a, type: 3}
+  mineM: {fileID: 859439399006154004, guid: 48b4cfb25228a024da5eb59e4da2a5eb, type: 3}
   bombIcon: {fileID: 0}
   hasBomb: 0
   points: []
   running: 0
   bombPosition: 0
+  minePosition: 0
