@@ -6,6 +6,12 @@ TagManager:
   tags:
   - island
   - enemybomb
+  - targetZone
+  - bombIcon
+  - enemyship
+  - sandIsland
+  - sharkWaters
+  - mineIcon
   layers:
   - Default
   - TransparentFX

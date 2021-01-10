@@ -5,22 +5,73 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Current Scenes/Title Screen.unity
+  - enabled: 0
+    path: Assets/Scenes/Geometry Scenes/Title Screen.unity
     guid: 8b98f5772a714614293cc0d84c114111
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/MainMenu.unity
+    path: Assets/Scenes/1st Demo/Main Menu.unity
+    guid: 0684f5a01e4f3304b8b2abad814aaa5c
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Easy Map.unity
+    guid: ce5efb742b634cd40b018f04c85355c1
+  - enabled: 0
+    path: Assets/Scenes/Geometry Scenes/MainMenu.unity
     guid: aae801b40e5ae494db38f24af28219e9
   - enabled: 1
-    path: Assets/Scenes/Current Scenes/HifiModular.unity
+    path: Assets/Scenes/1st Demo/T1 Harbor.unity
+    guid: 178e9cd799477ed43a633464f12f95b1
+  - enabled: 0
+    path: Assets/Scenes/Geometry Scenes/HifiModular.unity
     guid: 951889641455a2c4f85bf0b96d5d1575
-  - enabled: 1
-    path: Assets/Scenes/Current Scenes/Level2-4PlayerTest.unity
+  - enabled: 0
+    path: Assets/Scenes/Geometry Scenes/Level2-4PlayerTest.unity
     guid: 40bc140c63ed8d24c806f8416b1af7fb
-  - enabled: 1
-    path: Assets/Scenes/Current Scenes/ExpertsFor2.unity
+  - enabled: 0
+    path: Assets/Scenes/Geometry Scenes/ExpertsFor2.unity
     guid: e562a2944beef1e4180bc238cf4f18a4
-  - enabled: 1
-    path: Assets/Scenes/SuperEasyGabe Mode.unity
+  - enabled: 0
+    path: Assets/Scenes/Archived Scenes/SuperEasyGabe Mode.unity
     guid: af7a08c089a69b54582c409b17116267
+  - enabled: 0
+    path: Assets/Scenes/1st Demo/T2 Land Ho.unity
+    guid: 550e7e2623498de4792ecb1e3b1e95c0
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T2 Fishing Prep.unity
+    guid: 8761807d8bb924741aab0db8d973cd8f
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T3 Stranded.unity
+    guid: 9e5cf232d1bdeec4c8e5e8e10d91c394
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T4 The Delta.unity
+    guid: b19c0fab550f2c044a823ff6ac09c9fe
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T5 Enemy Encounter.unity
+    guid: 343532a61fb33b0418e2406141e7f873
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T6 Enemy Patrol.unity
+    guid: 392ea8429e4bf624593bec2d1c0fe4ac
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T7 Theft.unity
+    guid: 9fc614f5f78db3b458dbbb8a37c59ecb
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T8 River Run.unity
+    guid: e041e87e9f7164f4bac054d515c3d86b
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T9 Escape.unity
+    guid: e9e5c1b4188797b4a8d13012a493eaa4
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/T10 Days At Sea.unity
+    guid: 78bd3379283236d44a207fe9ad789186
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Medium Map.unity
+    guid: 6ce54a8364393664ca2f8ffa4af35f05
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Hard Map.unity
+    guid: 25330e45a3e8341478bafce863235709
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/4 Player Map.unity
+    guid: b69536f7ede50844e9ed8f6c6bc027c8
+  - enabled: 1
+    path: Assets/Scenes/1st Demo/Custom Map.unity
+    guid: 19f665f604dc13049b3f72335d42a779
   m_configObjects: {}
