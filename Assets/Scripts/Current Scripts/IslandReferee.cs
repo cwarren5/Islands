@@ -69,7 +69,7 @@ public class IslandReferee : MonoBehaviour
             //statusText.color = boatShades[(int)winningTeam];
             //statusShadow.text = statusText.text;
             winnerDeclaration = winningTeam;
-            Invoke("GoToScene", 5.0f);
+            Invoke("GoToScene", 2.0f);
         }
     }
 

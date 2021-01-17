@@ -46,20 +46,7 @@ public class BoatBehavior : MonoBehaviour
             LayBomb();
             LayMine();
         }
-        if (localReferee.currentTurn != boatColor)
-        {
-            myBoatPath.SetActive(false);
-            turnHighlighter.SetActive(false);
-            
-            if (turnMonitor && beached)
-            {
-                timeOut++;
-                turnMonitor = false;
-                anchorIcon.SetActive(true);
-
-            }
-        }
-        else
+        if (localReferee.currentTurn == boatColor)
         {
             if (!beached || timeOut > 3)
             {
@@ -71,6 +58,19 @@ public class BoatBehavior : MonoBehaviour
             {
                 timeOut++;
                 turnMonitor = true;
+            }
+        }
+        else
+        {           
+            myBoatPath.SetActive(false);
+            turnHighlighter.SetActive(false);
+
+            if (turnMonitor && beached)
+            {
+                timeOut++;
+                turnMonitor = false;
+                anchorIcon.SetActive(true);
+
             }
         }
 
@@ -111,6 +111,7 @@ public class BoatBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("I GOT HIT");
         if(other.tag == "sandIsland")
         {
             if (!beached)
@@ -118,7 +119,10 @@ public class BoatBehavior : MonoBehaviour
                 anchorIcon.SetActive(true);
                 beached = true;
                 timeOut = 0;
-                runPosition = pathScript.points.Count;
+                pathScript.running = false;
+                InitiateNextPlayerTurn();
+                runPosition = 0;
+                myBoatPath.transform.position = transform.position;
             }
         }
         if (other.tag == "island")
@@ -158,7 +162,11 @@ public class BoatBehavior : MonoBehaviour
     {
         bombIcon.SetActive(true);
         localReferee.GoToNextTurn();
-        mineIcon.SetActive(!localReferee.usedMine[(int)localReferee.currentTurn]);
+        if(mineIcon != null)
+        {
+            mineIcon.SetActive(!localReferee.usedMine[(int)localReferee.currentTurn]);
+        }
+        
     }
     private void LayBomb()
     {

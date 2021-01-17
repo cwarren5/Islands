@@ -20,5 +20,9 @@ public class FlattenLerp : MonoBehaviour
             Debug.Log(0.9-(Input.mousePosition.y / Screen.height));
             mapTransitioner.transitionSpeed = Mathf.Lerp(0, targetFlattenRate, (0.6f - (Input.mousePosition.y / Screen.height))*1.3f);
         }
+        if (Input.GetMouseButtonUp(0))
+        {
+            mapTransitioner.transitionSpeed = 1.0f;
+        }
     }
 }

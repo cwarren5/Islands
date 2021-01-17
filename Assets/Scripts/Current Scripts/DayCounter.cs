@@ -17,15 +17,18 @@ public class DayCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(localReferee.currentTurn != boatMonitor)
+        if (localReferee != null)
         {
-            if(localReferee.currentTurn == IslandReferee.BoatTeams.Red)
+            if (localReferee.currentTurn != boatMonitor)
             {
-                daysAtSea++;
-                Debug.Log(daysAtSea);
-                GetComponent<TextMesh>().text = "" + daysAtSea;
+                if (localReferee.currentTurn == IslandReferee.BoatTeams.Red)
+                {
+                    daysAtSea++;
+                    Debug.Log(daysAtSea);
+                    GetComponent<TextMesh>().text = "" + daysAtSea;
+                }
+                boatMonitor = localReferee.currentTurn;
             }
-            boatMonitor = localReferee.currentTurn;
         }
     }
 }

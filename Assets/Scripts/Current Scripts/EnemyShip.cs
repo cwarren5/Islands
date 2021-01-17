@@ -14,7 +14,7 @@ public class EnemyShip : MonoBehaviour
     private Vector3 currentLocation = default;
     private Vector3 nextLocation = default;
     private bool movingOut = true;
-    private float speed = 15.0f;
+    private float speed = 22.0f;
     // Start is called before the first frame update
     void Start()
     {
