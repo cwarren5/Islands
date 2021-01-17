@@ -13,7 +13,8 @@ public class BoatBehavior : MonoBehaviour
     [SerializeField] private GameObject turnHighlighter = default;
     [SerializeField] private GameObject anchorIcon = default;
     private GameObject bombIcon = default;
-    private GameObject mineIcon = default;
+    //private GameObject mineIcon = default;
+    //private GameObject[] minerIcons = default;
     private GameObject myBoatPath = default;
     [SerializeField] private float speed = 15.0f;
     [SerializeField] private IslandReferee.BoatTeams boatColor = default;
@@ -34,8 +35,9 @@ public class BoatBehavior : MonoBehaviour
         pathScript = myBoatPath.GetComponent<PathCreator>();
         turnHighlighter.SetActive(false);
         bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
-        mineIcon = GameObject.FindGameObjectWithTag("mineIcon");
+        //mineIcon = GameObject.FindGameObjectWithTag("mineIcon");
         anchorIcon.SetActive(false);
+        
     }
 
     void Update()
@@ -48,7 +50,7 @@ public class BoatBehavior : MonoBehaviour
         }
         if (localReferee.currentTurn == boatColor)
         {
-            if (!beached || timeOut > 3)
+            if (!beached || timeOut > localReferee.beachedTurnsNumber * 2 - 1)
             {
                 turnHighlighter.SetActive(true);
                 myBoatPath.SetActive(true);
@@ -162,10 +164,6 @@ public class BoatBehavior : MonoBehaviour
     {
         bombIcon.SetActive(true);
         localReferee.GoToNextTurn();
-        if(mineIcon != null)
-        {
-            mineIcon.SetActive(!localReferee.usedMine[(int)localReferee.currentTurn]);
-        }
         
     }
     private void LayBomb()
@@ -186,7 +184,9 @@ public class BoatBehavior : MonoBehaviour
             GameObject myBomb = Instantiate(mine, transform.position, Quaternion.identity);
             myBomb.transform.SetParent(gameObject.transform.parent);
             localReferee.usedMine[(int)boatColor] = true;
-            mineIcon.SetActive(false);
+            localReferee.teamMines[(int)boatColor]--;
+            localReferee.UpdateMineDisplay();
+            //mineIcon.SetActive(false);
         }
     }
 }

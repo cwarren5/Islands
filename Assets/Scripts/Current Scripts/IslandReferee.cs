@@ -5,27 +5,45 @@ using UnityEngine.SceneManagement;
 
 public class IslandReferee : MonoBehaviour
 {
-    [SerializeField] private TextMesh statusText = default;
-    [SerializeField] private TextMesh statusShadow = default;
-    [SerializeField] public GameObject nightEnv = default;
+    //[SerializeField] private TextMesh statusText = default;
+    //[SerializeField] private TextMesh statusShadow = default;
+    //[SerializeField] public GameObject nightEnv = default;
+    [Header("Scene Attributes")]
     [SerializeField] public GameObject dayEnv = default;
     [SerializeField] public int nextScene = 1;
 
-    public enum BoatTeams {Red, Yellow, White, Black};
-    public BoatTeams currentTurn = BoatTeams.Red;
-    public BoatTeams winnerDeclaration = default;
-    public Color[] boatShades = new Color[4];
-    public int[] boatCountTotal = new int[4];
-    public int totalTeams = 4;
-    public bool winnerDeclaired = false;
-    public bool[] usedMine = new bool[4];
- 
+    [Header("Game Rules")]
+
+    [SerializeField] public int beachedTurnsNumber = 1;
+    [SerializeField] public int startingMineNumber = 1;
+    [SerializeField] public int mineTurnDuration = 3;
+
+
+    [HideInInspector] public enum BoatTeams {Red, Yellow, White, Black};
+    [HideInInspector] public BoatTeams currentTurn = BoatTeams.Red;
+    [HideInInspector] public BoatTeams winnerDeclaration = default;
+    [HideInInspector] public Color[] boatShades = new Color[4];
+    [HideInInspector] public int[] boatCountTotal = new int[4];
+    [HideInInspector] public int totalTeams = 4;
+    [HideInInspector] public bool winnerDeclaired = false;
+    [HideInInspector] public bool[] usedMine = new bool[4];
+    public GameObject[] minerIcons;
+    [HideInInspector] public int totalTurns = 0;
+    public int[] teamMines = new int[4];
+
     //Sets up game after all boats have time to report back
     void Start()
     {
         Invoke("GameSetup", 0.01f);
         winnerDeclaired = false;
         totalTeams = 4;
+        for (int i = 0; i < teamMines.Length; i++)
+        {
+            teamMines[i] = startingMineNumber;
+        }
+
+        
+        minerIcons = GameObject.FindGameObjectsWithTag("mineIcon");      
     }
 
     void Update()
@@ -90,15 +108,44 @@ public class IslandReferee : MonoBehaviour
             }
         }
         currentTurn = (BoatTeams)nextTurn;
-        AnnounceTurn();
+        totalTurns++;
+        Debug.Log("Turns This Game : " + totalTurns);
+        UpdateMineDisplay();
+        ReloadMines();
+        //AnnounceTurn();
     }
 
-    void AnnounceTurn()
+    /*void AnnounceTurn()
     {
         Debug.Log("It's currently " + currentTurn + "'s Turn");
         statusText.text = currentTurn + "'s Turn";
         statusText.color = boatShades[(int)currentTurn];
         statusShadow.text = statusText.text;
+    }*/
+
+    public void UpdateMineDisplay()
+    {
+        if (minerIcons.Length > 0)
+        {
+            for (int i = 0; i < minerIcons.Length; i++)
+            {
+                minerIcons[i].SetActive(false);
+            }
+            for (int x = 0; x < teamMines[(int)currentTurn]; x++)
+            {
+                Debug.Log("this is the problem - " + teamMines[(int)currentTurn]);
+                minerIcons[x].SetActive(true);
+            }
+        }
+        
+    }
+
+    void ReloadMines()
+    {
+        if(teamMines[(int)currentTurn] > 0)
+        {
+            usedMine[(int)currentTurn] = false;
+        }
     }
 
     void GameSetup()
@@ -115,7 +162,8 @@ public class IslandReferee : MonoBehaviour
                 foundAStartingTurn = true;
             }
         }
-        AnnounceTurn();
+        UpdateMineDisplay();
+        //AnnounceTurn();
     }
 
     void PrintGameStatus()

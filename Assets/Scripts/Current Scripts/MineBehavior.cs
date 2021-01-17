@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class MineBehavior : MonoBehaviour
 {
-    Collider collider = default;
+    Collider mineCollider = default;
+    IslandReferee localReferee;
+    private int turnsOnSpawn = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider>();
-        collider.enabled = false;
+        localReferee = FindObjectOfType<IslandReferee>();
+        turnsOnSpawn = localReferee.totalTurns;
+        mineCollider = GetComponent<Collider>();
+        mineCollider.enabled = false;
         Invoke("MineDelay", 1.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(localReferee.totalTurns - turnsOnSpawn > localReferee.mineTurnDuration)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void MineDelay()
     {
-        collider.enabled = true;
+        mineCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
