@@ -142,9 +142,12 @@ public class IslandReferee : MonoBehaviour
 
     void ReloadMines()
     {
-        if(teamMines[(int)currentTurn] > 0)
-        {
-            usedMine[(int)currentTurn] = false;
+        for (int i = 0; i < 4; i++)
+        { 
+            if (teamMines[i] > 0)
+            {
+                usedMine[i] = false;
+            }
         }
     }
 

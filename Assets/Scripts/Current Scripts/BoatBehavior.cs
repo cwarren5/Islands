@@ -186,6 +186,7 @@ public class BoatBehavior : MonoBehaviour
             localReferee.usedMine[(int)boatColor] = true;
             localReferee.teamMines[(int)boatColor]--;
             localReferee.UpdateMineDisplay();
+            pathScript.droppedMine = false;
             //mineIcon.SetActive(false);
         }
     }

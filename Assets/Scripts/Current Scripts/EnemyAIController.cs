@@ -19,10 +19,10 @@ public class EnemyAIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("there are this many enemy boats:" + totalShips);
+        Debug.Log("there are this many enemy boats:" + totalShips + " and this many moved:" + allShipsMoved);
         if (localReferee.currentTurn == boatColor && allShipsMoved == totalShips && !delay)
         {
-            Invoke("DelayedTurn", .01f);
+            Invoke("DelayedTurn", .02f);
             allShipsMoved = 0;
             delay = true;
         }
