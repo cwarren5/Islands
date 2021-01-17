@@ -43,7 +43,7 @@ public class RuntimeTerrainTool : MonoBehaviour
     {
         get
         {
-            return (strength) / 9.0f;
+            return (strength);
         }
     }
 
@@ -150,7 +150,7 @@ public class RuntimeTerrainTool : MonoBehaviour
                     {
                         if (deformMode == DeformMode.RaiseLower)
                         {
-                            areaT[i, j] = areaT[i, j] - craterData[i * newTex.width + j].a * strengthSave / 15000;
+                            areaT[i, j] = areaT[i, j] - craterData[i * newTex.width + j].a * strengthSave * Time.deltaTime / 150;
                         }
                         else if (deformMode == DeformMode.Flatten)
                         {

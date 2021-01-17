@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 1404282838}
   deformTexture: {fileID: 2800000, guid: 4dfbeeb1b88610e468ddf7df6481908d, type: 3}
-  strength: 7
+  strength: 15
   area: 15
   showHelp: 0
   mainSceneCamera: {fileID: 963194227}
