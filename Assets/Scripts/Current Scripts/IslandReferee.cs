@@ -17,6 +17,7 @@ public class IslandReferee : MonoBehaviour
     [SerializeField] public int beachedTurnsNumber = 1;
     [SerializeField] public int startingMineNumber = 1;
     [SerializeField] public int mineTurnDuration = 3;
+    [SerializeField] public bool startWithForcefields = false;
 
 
     [HideInInspector] public enum BoatTeams {Red, Yellow, White, Black};

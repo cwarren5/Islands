@@ -12,6 +12,7 @@ public class BoatBehavior : MonoBehaviour
     [SerializeField] private GameObject boatPatherPrefab = default;
     [SerializeField] private GameObject turnHighlighter = default;
     [SerializeField] private GameObject anchorIcon = default;
+    [SerializeField] public GameObject forceField = default;
     private GameObject bombIcon = default;
     //private GameObject mineIcon = default;
     //private GameObject[] minerIcons = default;
@@ -37,6 +38,10 @@ public class BoatBehavior : MonoBehaviour
         bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
         //mineIcon = GameObject.FindGameObjectWithTag("mineIcon");
         anchorIcon.SetActive(false);
+        if (localReferee.startWithForcefields)
+        {
+            forceField.SetActive(true);
+        }
         
     }
 
@@ -135,7 +140,15 @@ public class BoatBehavior : MonoBehaviour
 
         if (other.tag == "enemybomb" && !pathScript.running)
         {
-            InitiateSelfDestruct();
+            Debug.Log("I Got Hit");
+            if (forceField.activeSelf)
+            {
+                forceField.SetActive(false);
+            }
+            else
+            {
+                InitiateSelfDestruct();
+            }
         }
 
         
