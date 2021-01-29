@@ -16,6 +16,7 @@ public class PathCreator : MonoBehaviour
     private GameObject activeMineM = default;
 
     private LineRenderer boatPath;
+    private int localVisibleLength;
     private bool pressed = false;
     public bool hasBomb = false;
     public bool droppedMine = false;
@@ -34,6 +35,7 @@ public class PathCreator : MonoBehaviour
         boatPath.enabled = false;
         localReferee = FindObjectOfType<IslandReferee>();
         bombIcon = GameObject.FindGameObjectWithTag("bombIcon");
+        localVisibleLength = localReferee.visibleLineLength;
     }
 
     // Update is called once per frame
@@ -78,8 +80,20 @@ public class PathCreator : MonoBehaviour
         if (DistanceToLastPoint(mousePoint) > lineFidelity)
         {
             points.Add(mousePoint);
-            boatPath.positionCount = points.Count;
-            boatPath.SetPositions(points.ToArray());
+            if(points.Count <= localVisibleLength)
+            {
+                boatPath.positionCount = points.Count;
+                boatPath.SetPositions(points.ToArray());
+            }
+            else
+            {
+                Vector3[] newPositions = new Vector3[localVisibleLength];
+                for (int i = 0; i < localVisibleLength; i++)
+                {
+                    newPositions[i] = points[points.Count - localVisibleLength + i];
+                }
+                boatPath.SetPositions(newPositions);
+            }
         }
     }
 

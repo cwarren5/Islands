@@ -18,6 +18,7 @@ public class IslandReferee : MonoBehaviour
     [SerializeField] public int startingMineNumber = 1;
     [SerializeField] public int mineTurnDuration = 3;
     [SerializeField] public bool startWithForcefields = false;
+    [SerializeField] public int visibleLineLength = 1000;
 
 
     [HideInInspector] public enum BoatTeams {Red, Yellow, White, Black};
@@ -28,9 +29,9 @@ public class IslandReferee : MonoBehaviour
     [HideInInspector] public int totalTeams = 4;
     [HideInInspector] public bool winnerDeclaired = false;
     [HideInInspector] public bool[] usedMine = new bool[4];
-    public GameObject[] minerIcons;
+    [HideInInspector] public GameObject[] minerIcons;
     [HideInInspector] public int totalTurns = 0;
-    public int[] teamMines = new int[4];
+    [HideInInspector] public int[] teamMines = new int[4];
 
     //Sets up game after all boats have time to report back
     void Start()
