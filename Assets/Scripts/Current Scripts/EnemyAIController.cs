@@ -22,7 +22,7 @@ public class EnemyAIController : MonoBehaviour
         Debug.Log("there are this many enemy boats:" + totalShips + " and this many moved:" + allShipsMoved);
         if (localReferee.currentTurn == boatColor && allShipsMoved == totalShips && !delay)
         {
-            Invoke("DelayedTurn", .02f);
+            Invoke("DelayedTurn", .1f);
             allShipsMoved = 0;
             delay = true;
         }

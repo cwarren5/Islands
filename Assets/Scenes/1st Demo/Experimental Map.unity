@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &162891397
 Transform:
   m_ObjectHideFlags: 0
@@ -5217,7 +5217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4972161032833102541
 Transform:
   m_ObjectHideFlags: 0
@@ -5643,11 +5643,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8688181764646528573, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
       propertyPath: mineTurnDuration
-      value: 100
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8688181764646528573, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
       propertyPath: startingMineNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688181764646528573, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
       propertyPath: forceFieldsAllowed
@@ -5659,7 +5659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8688181764646528573, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
       propertyPath: visibleLineLength
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8baa4665bdd12142b60c1d86b342e95, type: 3}
